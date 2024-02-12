@@ -50,3 +50,25 @@ least_used = (
 )
 
 print(least_used)
+
+# DAY WITH MOST HOURS
+
+df3 = df.drop(["Time"], axis=1)
+
+day_most_hours = (
+    df3.groupby("Date")
+    ["Duration"]
+    .sum()
+    .head(1)
+    .index
+    .values
+)
+
+day_most_hours = (
+    str(day_most_hours)
+    .translate(
+        str.maketrans("", "", "[]'")
+    )
+)
+
+print(day_most_hours)
