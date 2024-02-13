@@ -1,6 +1,6 @@
 import pandas as pd 
 import numpy as np 
-import datetime as dt
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("./data/Activity_history.csv")
 
@@ -51,9 +51,32 @@ least_used = (
 
 print(least_used)
 
-# DAY WITH MOST HOURS
+# AVERAGE TIME PER DAY
 
 df3 = df.drop(["Time"], axis=1)
+
+average_time = (
+    str(
+        df3.groupby("Date")
+        ["Duration"]
+        .sum()
+        .mean()
+    )
+    .split(".")[0]
+)
+
+if "0 days" in average_time: average_time = average_time.strip("0 days")
+
+""" 
+elif "days" in average_time:                # Review
+    avg_hs_days = average_time.split("")[0]
+    ...
+
+"""
+
+print(average_time)
+
+# DAY WITH THE MOST HOURS
 
 day_most_hours = (
     df3.groupby("Date")
