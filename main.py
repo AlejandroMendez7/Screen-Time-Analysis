@@ -68,7 +68,7 @@ average_time = (
 if "0 days" in average_time: average_time = average_time.strip("0 days")
 
 """ 
-elif "days" in average_time:                # Review
+elif "days" in average_time:                    # Review
     avg_hs_days = average_time.split("")[0]
     ...
 
@@ -95,3 +95,15 @@ day_most_hours = (
 )
 
 print(day_most_hours)
+
+# DATA VISUALIZATION
+
+# TIME SPENT PER DAY
+
+df4 = df.loc[df["App name"] != "Screen off (locked)"]
+
+df4 = df4.groupby("Date")
+
+average_time_per_day = df4["Duration"].sum()
+
+print(average_time_per_day)
