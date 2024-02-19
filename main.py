@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv("./data/Activity_history.csv")
 
-# DATA CLEANING
+# DATA CLEANING                                 Review
 
 df = df.drop(index=df.index[-3:])               # I removed the last three lines
 
@@ -67,13 +67,6 @@ average_time = (
 
 if "0 days" in average_time: average_time = average_time.strip("0 days")
 
-""" 
-elif "days" in average_time:                    # Review
-    avg_hs_days = average_time.split("")[0]
-    ...
-
-"""
-
 print(average_time)
 
 # DAY WITH THE MOST HOURS
@@ -100,9 +93,10 @@ print(day_most_hours)
 
 # TIME SPENT PER DAY
 
-df4 = df.loc[df["App name"] != "Screen off (locked)"]
-
-df4 = df4.groupby("Date")
+df4 = (
+    df.loc[df["App name"] != "Screen off (locked)"]
+    .groupby("Date")
+)
 
 average_time_per_day = df4["Duration"].sum()
 
