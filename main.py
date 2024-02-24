@@ -101,3 +101,44 @@ df4 = (
 average_time_per_day = df4["Duration"].sum()
 
 print(average_time_per_day)
+
+# BAR PLOT
+
+average_time_per_day_days = average_time_per_day.index.to_list()
+
+average_time_per_day_time = average_time_per_day.values.tolist()
+
+# print(average_time_per_day_time)
+# print(type(average_time_per_day_time[0]))
+
+count = 0
+
+for i in average_time_per_day_time:
+    i = i / 3_600_000_000_000                   # passage from ns to h
+    average_time_per_day_time[count] = i
+    count += 1
+
+# print(average_time_per_day_time)
+    
+plt.style.use('dark_background')
+
+fig, ax = plt.subplots()
+
+ax.grid()
+
+ax.bar(average_time_per_day_days, 
+       average_time_per_day_time, 
+       width=0.75, 
+       color= "#367C65",
+       edgecolor="black", 
+       linewidth=1,
+)
+
+fig.set_figwidth(11, forward=True)
+fig.set_figheight(6, forward=True)
+
+ax.set_title("Hours per day")
+ax.set_xlabel("Days")
+ax.set_ylabel("Hours")
+
+# plt.show()
